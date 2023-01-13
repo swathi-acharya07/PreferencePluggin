@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:open_shared_preferences/open_shared_preferences.dart';
 import 'package:open_shared_preferences/open_shared_preferences_platform_interface.dart';
 import 'package:open_shared_preferences/open_shared_preferences_method_channel.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
@@ -7,26 +6,25 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 class MockOpenSharedPreferencesPlatform
     with MockPlatformInterfaceMixin
     implements OpenSharedPreferencesPlatform {
-  @override
-  Future<String?> getPlatformVersion() => Future.value('42');
+  Future<String> getPlatformVersion() => Future.value('42');
 
   @override
-  Future contain({required String key}) {
+  Future<bool> contain({required String key}) {
     throw UnimplementedError();
   }
 
   @override
-  Future getBool({required String key}) {
+  Future<bool> getBool({required String key}) {
     throw UnimplementedError();
   }
 
   @override
-  Future getDouble({required String key}) {
+  Future<double> getDouble({required String key}) {
     throw UnimplementedError();
   }
 
   @override
-  Future getInt({required String key}) {
+  Future<int> getInt({required String key}) {
     throw UnimplementedError();
   }
 
@@ -36,22 +34,22 @@ class MockOpenSharedPreferencesPlatform
   }
 
   @override
-  Future getString({required String key}) {
+  Future<String> getString({required String key}) {
     throw UnimplementedError();
   }
 
   @override
-  Future remove({required String key}) {
+  Future<void> remove({required String key}) {
     throw UnimplementedError();
   }
 
   @override
-  Future removeAll() {
+  Future<void> removeAll() {
     throw UnimplementedError();
   }
 
   @override
-  Future saveData({required Object object, required String key}) {
+  Future<void> saveData({required Object object, required String key}) {
     throw UnimplementedError();
   }
 }
@@ -65,7 +63,6 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    OpenSharedPreferences openSharedPreferencesPlugin = OpenSharedPreferences();
     MockOpenSharedPreferencesPlatform fakePlatform =
         MockOpenSharedPreferencesPlatform();
     OpenSharedPreferencesPlatform.instance = fakePlatform;

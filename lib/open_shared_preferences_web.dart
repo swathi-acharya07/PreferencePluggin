@@ -16,12 +16,12 @@ class OpenSharedPreferencesWeb extends OpenSharedPreferencesPlatform {
   }
 
   @override
-  Future saveData({required Object object, required String key}) async {
+  Future<void> saveData({required Object object, required String key}) async {
     html.window.localStorage[key] = object.toString();
   }
 
   @override
-  Future getInt({required String key}) async {
+  Future<int> getInt({required String key}) async {
     if (html.window.localStorage.containsKey(key)) {
       return int.parse(html.window.localStorage[key] ?? "");
     } else {
@@ -30,7 +30,7 @@ class OpenSharedPreferencesWeb extends OpenSharedPreferencesPlatform {
   }
 
   @override
-  Future getString({required String key}) async {
+  Future<String> getString({required String key}) async {
     if (html.window.localStorage.containsKey(key)) {
       return html.window.localStorage[key] ?? "";
     } else {
@@ -39,7 +39,7 @@ class OpenSharedPreferencesWeb extends OpenSharedPreferencesPlatform {
   }
 
   @override
-  Future getBool({required String key}) async {
+  Future<bool> getBool({required String key}) async {
     if (html.window.localStorage.containsKey(key)) {
       return (html.window.localStorage[key] ?? "false").parseBool();
     } else {
@@ -48,7 +48,7 @@ class OpenSharedPreferencesWeb extends OpenSharedPreferencesPlatform {
   }
 
   @override
-  Future getDouble({required String key}) async {
+  Future<double> getDouble({required String key}) async {
     if (html.window.localStorage.containsKey(key)) {
       return double.parse(html.window.localStorage[key] ?? "");
     } else {
@@ -71,12 +71,12 @@ class OpenSharedPreferencesWeb extends OpenSharedPreferencesPlatform {
   }
 
   @override
-  Future removeAll() async {
+  Future<void> removeAll() async {
     html.window.localStorage.clear();
   }
 
   @override
-  Future remove({required String key}) async {
+  Future<void> remove({required String key}) async {
     html.window.localStorage.remove(key);
   }
 

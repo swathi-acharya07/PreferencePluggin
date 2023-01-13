@@ -24,23 +24,23 @@ abstract class OpenSharedPreferencesPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future saveData({required Object object, required String key}) async {
+  Future<void> saveData({required Object object, required String key}) async {
     throw ("Unimplemented method");
   }
 
-  Future getInt({required String key}) async {
+  Future<int> getInt({required String key}) async {
     throw ("Unimplemented method");
   }
 
-  Future getString({required String key}) async {
+  Future<String> getString({required String key}) async {
     throw ("Unimplemented method");
   }
 
-  Future getBool({required String key}) async {
+  Future<bool> getBool({required String key}) async {
     throw ("Unimplemented method");
   }
 
-  Future getDouble({required String key}) async {
+  Future<double> getDouble({required String key}) async {
     throw ("Unimplemented method");
   }
 
@@ -52,15 +52,15 @@ abstract class OpenSharedPreferencesPlatform extends PlatformInterface {
     throw ("Unimplemented method");
   }
 
-  Future removeAll() async {
+  Future<void> removeAll() async {
     throw ("Unimplemented method");
   }
 
-  Future remove({required String key}) async {
+  Future<void> remove({required String key}) async {
     throw ("Unimplemented method");
   }
 
-  Future contain({required String key}) async {
+  Future<bool> contain({required String key}) async {
     throw ("Unimplemented method");
   }
 }

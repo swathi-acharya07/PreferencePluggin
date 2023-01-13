@@ -23,7 +23,7 @@ class MethodChannelOpenSharedPreferences extends OpenSharedPreferencesPlatform {
   final _channel = const MethodChannel('open_shared_preferences');
 
   @override
-  Future saveData({required Object object, required String key}) async {
+  Future<void> saveData({required Object object, required String key}) async {
     await _channel.invokeMethod(PreferencesConstants.save.name, {
       PreferencesConstants.key.name: key,
       PreferencesConstants.value.name: object
@@ -31,25 +31,25 @@ class MethodChannelOpenSharedPreferences extends OpenSharedPreferencesPlatform {
   }
 
   @override
-  Future getInt({required String key}) async {
+  Future<int> getInt({required String key}) async {
     return await _channel.invokeMethod(
         PreferencesConstants.getInt.name, {PreferencesConstants.key.name: key});
   }
 
   @override
-  Future getString({required String key}) async {
+  Future<String> getString({required String key}) async {
     return await _channel.invokeMethod(PreferencesConstants.getString.name,
         {PreferencesConstants.key.name: key});
   }
 
   @override
-  Future getBool({required String key}) async {
+  Future<bool> getBool({required String key}) async {
     return await _channel.invokeMethod(PreferencesConstants.getBool.name,
         {PreferencesConstants.key.name: key});
   }
 
   @override
-  Future getDouble({required String key}) async {
+  Future<double> getDouble({required String key}) async {
     return await _channel.invokeMethod(PreferencesConstants.getDouble.name,
         {PreferencesConstants.key.name: key});
   }
@@ -66,12 +66,12 @@ class MethodChannelOpenSharedPreferences extends OpenSharedPreferencesPlatform {
   }
 
   @override
-  Future removeAll() async {
+  Future<void> removeAll() async {
     await _channel.invokeMapMethod(PreferencesConstants.removeAll.name);
   }
 
   @override
-  Future remove({required String key}) async {
+  Future<void> remove({required String key}) async {
     await _channel.invokeMethod(
         PreferencesConstants.remove.name, {PreferencesConstants.key.name: key});
   }
