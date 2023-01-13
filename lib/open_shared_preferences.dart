@@ -1,24 +1,24 @@
 import 'open_shared_preferences_platform_interface.dart';
 
 class OpenSharedPreferences {
-  Future saveData({required Object object, required String key}) async {
+  Future<void> saveData({required Object object, required String key}) async {
     return OpenSharedPreferencesPlatform.instance
         .saveData(object: object, key: key);
   }
 
-  Future getInt({required String key}) async {
+  Future<int> getInt({required String key}) async {
     return await OpenSharedPreferencesPlatform.instance.getInt(key: key);
   }
 
-  Future getString({required String key}) async {
+  Future<String> getString({required String key}) async {
     return await OpenSharedPreferencesPlatform.instance.getString(key: key);
   }
 
-  Future getBool({required String key}) async {
+  Future<bool> getBool({required String key}) async {
     return await OpenSharedPreferencesPlatform.instance.getBool(key: key);
   }
 
-  Future getDouble({required String key}) async {
+  Future<double> getDouble({required String key}) async {
     return await OpenSharedPreferencesPlatform.instance.getDouble(key: key);
   }
 
@@ -30,11 +30,11 @@ class OpenSharedPreferences {
     return await OpenSharedPreferencesPlatform.instance.getLong(key: key);
   }
 
-  Future removeAll() async {
+  Future<void> removeAll() async {
     await OpenSharedPreferencesPlatform.instance.removeAll();
   }
 
-  Future remove({required String key}) async {
+  Future<void> remove({required String key}) async {
     await OpenSharedPreferencesPlatform.instance.remove(key: key);
   }
 
