@@ -49,14 +49,17 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> saveData() async {
-    OpenSharedPreferences().saveData(object: 10, key: "open_money.abc");
-    OpenSharedPreferences().saveData(object: 100.20, key: "open_money.abcc");
-    OpenSharedPreferences().saveData(object: "swathi", key: "open_money.abccc");
-    OpenSharedPreferences().saveData(object: true, key: "open_money.abcccc");
+    await OpenSharedPreferences().saveData(object: 10, key: "open_money.abc");
+    await OpenSharedPreferences()
+        .saveData(object: 100.20, key: "open_money.abcc");
+    await OpenSharedPreferences()
+        .saveData(object: "swathi", key: "open_money.abccc");
+    await OpenSharedPreferences()
+        .saveData(object: true, key: "open_money.abcccc");
   }
 
   Future<void> getData() async {
-    OpenSharedPreferences().remove(key: "open_money.abc");
+    await OpenSharedPreferences().remove(key: "open_money.abc");
     bool val = await OpenSharedPreferences().contain(key: "open_money.abc");
     bool val2 = await OpenSharedPreferences().contain(key: "open_money.def");
     debugPrint(val.toString());
@@ -87,8 +90,8 @@ class _MyAppState extends State<MyApp> {
               height: 100,
             ),
             TextButton(
-              onPressed: () {
-                saveData();
+              onPressed: () async {
+                await saveData();
               },
               child: const Text('Save Data'),
             ),
@@ -96,8 +99,8 @@ class _MyAppState extends State<MyApp> {
               height: 100,
             ),
             TextButton(
-              onPressed: () {
-                getData();
+              onPressed: () async {
+                await getData();
               },
               child: const Text('Get Data'),
             ),

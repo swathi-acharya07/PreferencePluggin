@@ -24,7 +24,7 @@ class MethodChannelOpenSharedPreferences extends OpenSharedPreferencesPlatform {
 
   @override
   Future<void> saveData({required Object object, required String key}) async {
-    await _channel.invokeMethod(PreferencesConstants.save.name, {
+    return await _channel.invokeMethod(PreferencesConstants.save.name, {
       PreferencesConstants.key.name: key,
       PreferencesConstants.value.name: object
     });
@@ -66,13 +66,13 @@ class MethodChannelOpenSharedPreferences extends OpenSharedPreferencesPlatform {
   }
 
   @override
-  Future<void> removeAll() async {
-    await _channel.invokeMapMethod(PreferencesConstants.removeAll.name);
+  Future removeAll() async {
+    return await _channel.invokeMapMethod(PreferencesConstants.removeAll.name);
   }
 
   @override
-  Future<void> remove({required String key}) async {
-    await _channel.invokeMethod(
+  Future remove({required String key}) async {
+    return await _channel.invokeMethod(
         PreferencesConstants.remove.name, {PreferencesConstants.key.name: key});
   }
 
