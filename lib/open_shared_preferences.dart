@@ -2,7 +2,7 @@ import 'open_shared_preferences_platform_interface.dart';
 
 class OpenSharedPreferences {
   Future<void> saveData({required Object object, required String key}) async {
-    return OpenSharedPreferencesPlatform.instance
+    return await OpenSharedPreferencesPlatform.instance
         .saveData(object: object, key: key);
   }
 
@@ -31,11 +31,11 @@ class OpenSharedPreferences {
   }
 
   Future<void> removeAll() async {
-    await OpenSharedPreferencesPlatform.instance.removeAll();
+    return await OpenSharedPreferencesPlatform.instance.removeAll();
   }
 
   Future<void> remove({required String key}) async {
-    await OpenSharedPreferencesPlatform.instance.remove(key: key);
+    return await OpenSharedPreferencesPlatform.instance.remove(key: key);
   }
 
   Future<bool> contain({required String key}) async {
