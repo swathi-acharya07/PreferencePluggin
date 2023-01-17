@@ -81,7 +81,7 @@ class OpenSharedPreferencesWeb extends OpenSharedPreferencesPlatform {
   }
 
   @override
-  Future<bool> contain({required String key}) async {
+  Future<bool> contains({required String key}) async {
     return html.window.localStorage.containsKey(key);
   }
 }

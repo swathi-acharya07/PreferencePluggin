@@ -60,7 +60,7 @@ abstract class OpenSharedPreferencesPlatform extends PlatformInterface {
     throw ("Unimplemented method");
   }
 
-  Future<bool> contain({required String key}) async {
+  Future<bool> contains({required String key}) async {
     throw ("Unimplemented method");
   }
 }

@@ -9,7 +9,7 @@ class MockOpenSharedPreferencesPlatform
   Future<String> getPlatformVersion() => Future.value('42');
 
   @override
-  Future<bool> contain({required String key}) {
+  Future<bool> contains({required String key}) {
     throw UnimplementedError();
   }
 

@@ -39,6 +39,6 @@ class OpenSharedPreferences {
   }
 
   Future<bool> contain({required String key}) async {
-    return await OpenSharedPreferencesPlatform.instance.contain(key: key);
+    return await OpenSharedPreferencesPlatform.instance.contains(key: key);
   }
 }

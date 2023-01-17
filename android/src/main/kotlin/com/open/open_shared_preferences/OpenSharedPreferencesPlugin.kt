@@ -73,7 +73,8 @@ class OpenSharedPreferencesPlugin: FlutterPlugin, MethodCallHandler, ActivityAwa
     } else if (call.method == getLong) {
       result.success(prefs.getLong(key!!, 0))
     } else if (call.method == remove) {
-      result.success(prefs.remove(key!!))
+      prefs.remove(key!!)
+      result.success(true)
     } else if (call.method == removeAll) {
       prefs.removeAll()
       result.success(true)

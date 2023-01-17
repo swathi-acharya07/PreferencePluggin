@@ -77,7 +77,7 @@ class MethodChannelOpenSharedPreferences extends OpenSharedPreferencesPlatform {
   }
 
   @override
-  Future<bool> contain({required String key}) async {
+  Future<bool> contains({required String key}) async {
     return await _channel.invokeMethod(PreferencesConstants.contains.name,
         {PreferencesConstants.key.name: key});
   }
