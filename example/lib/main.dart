@@ -49,13 +49,13 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> saveData() async {
+    await OpenSharedPreferences()
+        .saveData(object: true, key: "open_money.abcccc");
     await OpenSharedPreferences().saveData(object: 10, key: "open_money.abc");
     await OpenSharedPreferences()
         .saveData(object: 100.20, key: "open_money.abcc");
     await OpenSharedPreferences()
         .saveData(object: "swathi", key: "open_money.abccc");
-    await OpenSharedPreferences()
-        .saveData(object: true, key: "open_money.abcccc");
   }
 
   Future<void> getData() async {

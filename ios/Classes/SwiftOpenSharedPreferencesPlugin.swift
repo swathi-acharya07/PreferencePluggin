@@ -29,6 +29,7 @@ public class SwiftOpenSharedPreferencesPlugin: NSObject, FlutterPlugin {
       if let args = call.arguments as? [String: Any] {
         if (call.method == Constants.save) {
           save(value: args[Constants.value], key: args[Constants.key] as! String)
+          result(true)
         } else if (call.method == Constants.getInt) {
           result(getInt(key: args[Constants.key] as! String))
         } else if (call.method == Constants.getString) {
@@ -43,12 +44,15 @@ public class SwiftOpenSharedPreferencesPlugin: NSObject, FlutterPlugin {
           result(getDouble(key: args[Constants.key] as! String))
         } else if (call.method == Constants.remove) {
           UserDefaults.standard.removeObject(forKey: args[Constants.key] as! String)
+          result(true)
         } else if (call.method == Constants.contains) {
           result(UserDefaults.standard.valueExists(key: args[Constants.key] as! String))
         }
       } else {
         if (call.method == Constants.removeAll) {
           removeAllKeys()
+          result(true)
+
         }
       }
   }

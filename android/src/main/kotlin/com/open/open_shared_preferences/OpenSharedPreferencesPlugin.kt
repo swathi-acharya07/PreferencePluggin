@@ -59,6 +59,7 @@ class OpenSharedPreferencesPlugin: FlutterPlugin, MethodCallHandler, ActivityAwa
       } else if (type == VariableType.LONG) {
         prefs.save(key!!, value as Long)
       }
+      result.success(true)
     } else if (call.method == getInt) {
       result.success(prefs.getInt(key!!, 0))
     } else if (call.method == getDouble) {
@@ -75,6 +76,7 @@ class OpenSharedPreferencesPlugin: FlutterPlugin, MethodCallHandler, ActivityAwa
       result.success(prefs.remove(key!!))
     } else if (call.method == removeAll) {
       prefs.removeAll()
+      result.success(true)
     } else if (call.method == contains) {
       result.success(prefs.contains(key!!))
     } else {
