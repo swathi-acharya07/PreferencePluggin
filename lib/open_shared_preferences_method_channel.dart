@@ -67,7 +67,7 @@ class MethodChannelOpenSharedPreferences extends OpenSharedPreferencesPlatform {
 
   @override
   Future removeAll() async {
-    return await _channel.invokeMapMethod(PreferencesConstants.removeAll.name);
+    return await _channel.invokeMethod(PreferencesConstants.removeAll.name);
   }
 
   @override
