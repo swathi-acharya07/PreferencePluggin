@@ -14,11 +14,14 @@ struct Constants {
     static let getLong = "getLong"
     static let remove = "remove"
     static let removeAll = "removeAll"
+    static let removePermanentDataKeys = "removePermanentDataKeys"
     static let contains = "contains"
     static let keyPrefix = "open_money."
+    static let permanentKeyPrefix = "open_money_premanent."
 }
 
 public class SwiftOpenSharedPreferencesPlugin: NSObject, FlutterPlugin {
+
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "open_shared_preferences", binaryMessenger: registrar.messenger())
     let instance = SwiftOpenSharedPreferencesPlugin()
@@ -49,6 +52,8 @@ public class SwiftOpenSharedPreferencesPlugin: NSObject, FlutterPlugin {
       } else {
         if (call.method == Constants.removeAll) {
           removeAllKeys()
+        } else if (call.method == Constants.removePermanentDataKeys) {
+          removeAllPermanentKeys()
         }
       }
   }
@@ -84,6 +89,10 @@ public class SwiftOpenSharedPreferencesPlugin: NSObject, FlutterPlugin {
     func removeAllKeys() {
       UserDefaults.standard.removeAll()
     }
+
+    func removeAllPermanentKeys() {
+      UserDefaults.standard.removeAllPermanentData()
+    }
 }
 extension UserDefaults {
   static let standard = UserDefaults.standard
@@ -114,8 +123,37 @@ extension UserDefaults {
     return userKeys
   }
 
+    func getAllPermanentKeys() -> [String] {
+    var userKeys = [String]()
+    var includedPrefixes = [Constants.permanentKeyPrefix]
+
+    let defaultKeys = UserDefaults.standard.dictionaryRepresentation()
+    let keys = defaultKeys.keys.filter { key in
+      for prefix in includedPrefixes {
+        if key.hasPrefix(prefix) {
+          return true
+        }
+      }
+      return false
+    }
+    for key in keys {
+      if let value = defaultKeys[key] {
+        print("\(key) = \(value)")
+        userKeys.append(key)
+      }
+    }
+    return userKeys
+  }
+
   func removeAll() {
     let keys = getAllKeys()
+    for userKey in keys {
+      UserDefaults.standard.removeObject(forKey: userKey)
+    }
+  }
+
+  func removeAllPermanentData() {
+    let keys = getAllPermanentKeys()
     for userKey in keys {
       UserDefaults.standard.removeObject(forKey: userKey)
     }
