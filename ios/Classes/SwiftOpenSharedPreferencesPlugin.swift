@@ -17,7 +17,7 @@ struct Constants {
     static let removePermanentDataKeys = "removePermanentDataKeys"
     static let contains = "contains"
     static let keyPrefix = "open_money."
-    static let permanentKeyPrefix = "open_money_premanent."
+    static let permanentKeyPrefix = "open_money_permanent."
 }
 
 public class SwiftOpenSharedPreferencesPlugin: NSObject, FlutterPlugin {

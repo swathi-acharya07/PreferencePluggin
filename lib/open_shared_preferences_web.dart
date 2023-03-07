@@ -16,12 +16,19 @@ class OpenSharedPreferencesWeb extends OpenSharedPreferencesPlatform {
   }
 
   @override
-  Future<void> saveData({required Object object, required String key}) async {
+  Future<void> saveData({
+    required Object object,
+    required String key,
+    bool isPersistedData = false,
+  }) async {
     html.window.localStorage[key] = object.toString();
   }
 
   @override
-  Future<int> getInt({required String key}) async {
+  Future<int> getInt({
+    required String key,
+    bool isPersistedData = false,
+  }) async {
     if (html.window.localStorage.containsKey(key)) {
       return int.parse(html.window.localStorage[key] ?? "");
     } else {
@@ -30,7 +37,10 @@ class OpenSharedPreferencesWeb extends OpenSharedPreferencesPlatform {
   }
 
   @override
-  Future<String> getString({required String key}) async {
+  Future<String> getString({
+    required String key,
+    bool isPersistedData = false,
+  }) async {
     if (html.window.localStorage.containsKey(key)) {
       return html.window.localStorage[key] ?? "";
     } else {
@@ -39,7 +49,10 @@ class OpenSharedPreferencesWeb extends OpenSharedPreferencesPlatform {
   }
 
   @override
-  Future<bool> getBool({required String key}) async {
+  Future<bool> getBool({
+    required String key,
+    bool isPersistedData = false,
+  }) async {
     if (html.window.localStorage.containsKey(key)) {
       return (html.window.localStorage[key] ?? "false").parseBool();
     } else {
@@ -48,7 +61,10 @@ class OpenSharedPreferencesWeb extends OpenSharedPreferencesPlatform {
   }
 
   @override
-  Future<double> getDouble({required String key}) async {
+  Future<double> getDouble({
+    required String key,
+    bool isPersistedData = false,
+  }) async {
     if (html.window.localStorage.containsKey(key)) {
       return double.parse(html.window.localStorage[key] ?? "");
     } else {
@@ -62,7 +78,10 @@ class OpenSharedPreferencesWeb extends OpenSharedPreferencesPlatform {
   // }
 
   @override
-  Future getLong({required String key}) async {
+  Future getLong({
+    required String key,
+    bool isPersistedData = false,
+  }) async {
     if (html.window.localStorage.containsKey(key)) {
       return html.window.localStorage[key] ?? "";
     } else {
@@ -71,17 +90,23 @@ class OpenSharedPreferencesWeb extends OpenSharedPreferencesPlatform {
   }
 
   @override
-  Future<void> removeAll() async {
+  Future<void> removeAll({bool isPersistedData = false}) async {
     html.window.localStorage.clear();
   }
 
   @override
-  Future<void> remove({required String key}) async {
+  Future<void> remove({
+    required String key,
+    bool isPersistedData = false,
+  }) async {
     html.window.localStorage.remove(key);
   }
 
   @override
-  Future<bool> contain({required String key}) async {
+  Future<bool> contain({
+    required String key,
+    bool isPersistedData = false,
+  }) async {
     return html.window.localStorage.containsKey(key);
   }
 }
@@ -94,86 +119,5 @@ extension BoolParsing on String {
       return false;
     }
     throw '"$this" can not be parsed to boolean.';
-  }
-}
-
-class PermanentOpenSharedPreferencesWeb
-    extends PermanentOpenSharedPreferencesPlatform {
-  /// Constructs a OpenSharedPreferencesWeb
-  PermanentOpenSharedPreferencesWeb();
-
-  static void registerWith(Registrar registrar) {
-    PermanentOpenSharedPreferencesPlatform.instance =
-        PermanentOpenSharedPreferencesWeb();
-  }
-
-  @override
-  Future saveData({required Object object, required String key}) async {
-    html.window.localStorage[key] = object.toString();
-  }
-
-  @override
-  Future getInt({required String key}) async {
-    if (html.window.localStorage.containsKey(key)) {
-      return int.parse(html.window.localStorage[key] ?? "");
-    } else {
-      return 0;
-    }
-  }
-
-  @override
-  Future getString({required String key}) async {
-    if (html.window.localStorage.containsKey(key)) {
-      return html.window.localStorage[key] ?? "";
-    } else {
-      return "";
-    }
-  }
-
-  @override
-  Future getBool({required String key}) async {
-    if (html.window.localStorage.containsKey(key)) {
-      return (html.window.localStorage[key] ?? "false").parseBool();
-    } else {
-      return false;
-    }
-  }
-
-  @override
-  Future getDouble({required String key}) async {
-    if (html.window.localStorage.containsKey(key)) {
-      return double.parse(html.window.localStorage[key] ?? "");
-    } else {
-      return 0.0;
-    }
-  }
-
-  // @override
-  // Future getFloat({required String key}) async {
-  //   return html.window.localStorage[key];
-  // }
-
-  @override
-  Future getLong({required String key}) async {
-    if (html.window.localStorage.containsKey(key)) {
-      return html.window.localStorage[key] ?? "";
-    } else {
-      return "";
-    }
-  }
-
-  @override
-  Future removeAll() async {
-    html.window.localStorage.clear();
-  }
-
-  @override
-  Future remove({required String key}) async {
-    html.window.localStorage.remove(key);
-  }
-
-  @override
-  Future<bool> contain({required String key}) async {
-    return html.window.localStorage.containsKey(key);
   }
 }

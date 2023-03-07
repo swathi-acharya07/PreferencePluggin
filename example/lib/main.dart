@@ -52,18 +52,29 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> saveData() async {
-    await PermanentOpenSharedPreferences().saveData(object: 10, key: "abc");
-    await PermanentOpenSharedPreferences()
-        .saveData(object: 100.20, key: "abcc");
-    await OpenSharedPreferences().saveData(object: "swathi", key: "abccc");
+    var v = await OpenSharedPreferences()
+        .saveData(object: "swathi", key: "swat", isPersistedData: false);
+    var e = await OpenSharedPreferences()
+        .saveData(object: "swathi", key: "qwerty", isPersistedData: true);
+    var sjdhv = await OpenSharedPreferences()
+        .saveData(object: "smruthi", key: "123", isPersistedData: true);
   }
 
   Future<void> getData() async {
     bool val = await OpenSharedPreferences().contain(key: "abc");
     debugPrint(val.toString());
-    PermanentOpenSharedPreferences().removeAll();
     bool val2 = await OpenSharedPreferences().contain(key: "abcc");
     debugPrint(val2.toString());
+    var val3 = await OpenSharedPreferences()
+        .getString(key: "qwerty", isPersistedData: true);
+    debugPrint(val3.toString());
+    OpenSharedPreferences().removeAll(isPersistedData: true);
+    var val4 = await OpenSharedPreferences()
+        .getString(key: "qwerty", isPersistedData: true);
+    debugPrint(val4.toString());
+    var val5 = await OpenSharedPreferences()
+        .getString(key: "swat", isPersistedData: false);
+    debugPrint(val5.toString());
   }
 
   @override
