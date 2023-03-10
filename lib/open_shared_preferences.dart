@@ -1,7 +1,7 @@
 import 'open_shared_preferences_platform_interface.dart';
 
 class OpenSharedPreferences {
-  Future<void> saveData({
+  Future saveData({
     required Object object,
     required String key,
     bool isPersistedData = false,
@@ -54,16 +54,16 @@ class OpenSharedPreferences {
         .getLong(key: key, isPersistedData: isPersistedData);
   }
 
-  Future<void> removeAll({bool isPersistedData = false}) async {
-    return await OpenSharedPreferencesPlatform.instance
+  Future removeAll({bool isPersistedData = false}) async {
+    await OpenSharedPreferencesPlatform.instance
         .removeAll(isPersistedData: isPersistedData);
   }
 
-  Future<void> remove({
+  Future remove({
     required String key,
     bool isPersistedData = false,
   }) async {
-    return await OpenSharedPreferencesPlatform.instance
+    await OpenSharedPreferencesPlatform.instance
         .remove(key: key, isPersistedData: isPersistedData);
   }
 

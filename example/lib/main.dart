@@ -52,11 +52,11 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> saveData() async {
-    var v = await OpenSharedPreferences()
+    OpenSharedPreferences()
         .saveData(object: "swathi", key: "swat", isPersistedData: false);
-    var e = await OpenSharedPreferences()
-        .saveData(object: "swathi", key: "qwerty", isPersistedData: true);
-    var sjdhv = await OpenSharedPreferences()
+    OpenSharedPreferences().saveData(
+        object: "askjbajshdvabsd", key: "qwerty", isPersistedData: true);
+    OpenSharedPreferences()
         .saveData(object: "smruthi", key: "123", isPersistedData: true);
   }
 
@@ -75,6 +75,10 @@ class _MyAppState extends State<MyApp> {
     var val5 = await OpenSharedPreferences()
         .getString(key: "swat", isPersistedData: false);
     debugPrint(val5.toString());
+    OpenSharedPreferences().removeAll(isPersistedData: false);
+    var val6 = await OpenSharedPreferences()
+        .getString(key: "swat", isPersistedData: false);
+    debugPrint(val6.toString());
   }
 
   @override

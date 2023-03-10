@@ -24,7 +24,7 @@ abstract class OpenSharedPreferencesPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<void> saveData({
+  Future saveData({
     required Object object,
     required String key,
     bool isPersistedData = false,
@@ -71,11 +71,11 @@ abstract class OpenSharedPreferencesPlatform extends PlatformInterface {
     throw ("Unimplemented method");
   }
 
-  Future<void> removeAll({bool isPersistedData = false}) async {
+  Future removeAll({bool isPersistedData = false}) async {
     throw ("Unimplemented method");
   }
 
-  Future<void> remove({
+  Future remove({
     required String key,
     bool isPersistedData = false,
   }) async {

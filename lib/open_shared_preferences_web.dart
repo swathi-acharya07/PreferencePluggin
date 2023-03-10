@@ -16,7 +16,7 @@ class OpenSharedPreferencesWeb extends OpenSharedPreferencesPlatform {
   }
 
   @override
-  Future<void> saveData({
+  Future saveData({
     required Object object,
     required String key,
     bool isPersistedData = false,
@@ -90,12 +90,12 @@ class OpenSharedPreferencesWeb extends OpenSharedPreferencesPlatform {
   }
 
   @override
-  Future<void> removeAll({bool isPersistedData = false}) async {
+  Future removeAll({bool isPersistedData = false}) async {
     html.window.localStorage.clear();
   }
 
   @override
-  Future<void> remove({
+  Future remove({
     required String key,
     bool isPersistedData = false,
   }) async {

@@ -2,10 +2,18 @@ PODS:
   - Flutter (1.0.0)
   - open_shared_preferences (0.0.1):
     - Flutter
+    - SwiftMessages
+  - SwiftMessages (9.0.6):
+    - SwiftMessages/App (= 9.0.6)
+  - SwiftMessages/App (9.0.6)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
   - open_shared_preferences (from `.symlinks/plugins/open_shared_preferences/ios`)
+
+SPEC REPOS:
+  trunk:
+    - SwiftMessages
 
 EXTERNAL SOURCES:
   Flutter:
@@ -15,7 +23,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  open_shared_preferences: 4656fe87033a3038bdbd4cf71410097cc20887d5
+  open_shared_preferences: 86c30bfb37d359892892ec9c86e7e21a6098a8f4
+  SwiftMessages: f0c7ef4705a570ad6c5e208b611f4333e660ed92
 
 PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3
 

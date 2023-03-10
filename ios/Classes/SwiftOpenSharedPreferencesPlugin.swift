@@ -1,6 +1,7 @@
 import Flutter
 import UIKit
 import Foundation
+import SwiftMessages
 
 struct Constants {
     static let value = "value"
@@ -20,6 +21,28 @@ struct Constants {
     static let permanentKeyPrefix = "open_money_permanent."
 }
 
+class CustomAlertController {
+    class func showAlertWith(title: String, subTitle: String) {
+        let view = MessageView.viewFromNib(layout: .cardView)
+        view.button?.isHidden = true
+        view.configureTheme(backgroundColor: UIColor.blue, foregroundColor: UIColor.white, iconImage: UIImage(named: "bell.png"), iconText: nil)
+        view.configureDropShadow()
+        view.configureContent(title: title, body: subTitle)
+        var config = SwiftMessages.Config()
+        let duration = SwiftMessages.Duration.seconds(seconds: 2)
+        config.duration = duration
+        view.isUserInteractionEnabled = false
+        config.eventListeners.append { event in
+            if case .didHide = event {
+                view.isUserInteractionEnabled = true
+            }
+        }
+        // Show the message.
+        SwiftMessages.show(config: config, view: view)
+    }
+}
+
+
 public class SwiftOpenSharedPreferencesPlugin: NSObject, FlutterPlugin {
 
   public static func register(with registrar: FlutterPluginRegistrar) {
@@ -29,6 +52,7 @@ public class SwiftOpenSharedPreferencesPlugin: NSObject, FlutterPlugin {
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+
       if let args = call.arguments as? [String: Any] {
         if (call.method == Constants.save) {
           save(value: args[Constants.value], key: args[Constants.key] as! String)
@@ -48,14 +72,12 @@ public class SwiftOpenSharedPreferencesPlugin: NSObject, FlutterPlugin {
           UserDefaults.standard.removeObject(forKey: args[Constants.key] as! String)
         } else if (call.method == Constants.contains) {
           result(UserDefaults.standard.valueExists(key: args[Constants.key] as! String))
-        }
-      } else {
-        if (call.method == Constants.removeAll) {
+        } else if (call.method == Constants.removeAll) {
           removeAllKeys()
         } else if (call.method == Constants.removePermanentDataKeys) {
           removeAllPermanentKeys()
         }
-      }
+      } 
   }
 
   func save(value: Any?, key: String) {
@@ -94,6 +116,7 @@ public class SwiftOpenSharedPreferencesPlugin: NSObject, FlutterPlugin {
       UserDefaults.standard.removeAllPermanentData()
     }
 }
+
 extension UserDefaults {
   static let standard = UserDefaults.standard
 

@@ -28,12 +28,12 @@ class MethodChannelOpenSharedPreferences extends OpenSharedPreferencesPlatform {
   final _channel = const MethodChannel('open_shared_preferences');
 
   @override
-  Future<void> saveData({
+  Future saveData({
     required Object object,
     required String key,
     bool isPersistedData = false,
   }) async {
-    return await _channel.invokeMethod(PreferencesConstants.save.name, {
+    await _channel.invokeMethod(PreferencesConstants.save.name, {
       PreferencesConstants.key.name:
           isPersistedData == true ? permanentKey + key : keyPrefix + key,
       PreferencesConstants.value.name: object,
@@ -108,7 +108,7 @@ class MethodChannelOpenSharedPreferences extends OpenSharedPreferencesPlatform {
 
   @override
   Future removeAll({bool isPersistedData = false}) async {
-    return isPersistedData == true
+    isPersistedData == true
         ? await _channel.invokeMapMethod(
             PreferencesConstants.removePermanentDataKeys.name,
             {PreferencesConstants.isPersistant.name: isPersistedData})
@@ -121,7 +121,7 @@ class MethodChannelOpenSharedPreferences extends OpenSharedPreferencesPlatform {
     required String key,
     bool isPersistedData = false,
   }) async {
-    return await _channel.invokeMethod(PreferencesConstants.remove.name, {
+    await _channel.invokeMethod(PreferencesConstants.remove.name, {
       PreferencesConstants.key.name:
           isPersistedData == true ? permanentKey + key : keyPrefix + key,
       PreferencesConstants.isPersistant.name: isPersistedData,
